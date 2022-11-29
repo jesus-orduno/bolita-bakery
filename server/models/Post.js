@@ -1,45 +1,47 @@
-const { Schema, model } = require('mongoose');
-const dateFormat = require('../utils/dateFormat');
+// this entire file is from the mini-project and should not be needed at all
 
-const postSchema = new Schema({
-  postText: {
-    type: String,
-    required: 'You need to leave a post!',
-    minlength: 1,
-    maxlength: 280,
-    trim: true,
-  },
-  postAuthor: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-    get: (timestamp) => dateFormat(timestamp),
-  },
-  comments: [
-    {
-      commentText: {
-        type: String,
-        required: true,
-        minlength: 1,
-        maxlength: 280,
-      },
-      commentAuthor: {
-        type: String,
-        required: true,
-      },
-      createdAt: {
-        type: Date,
-        default: Date.now,
-        get: (timestamp) => dateFormat(timestamp),
-      },
-    },
-  ],
-});
+// const { Schema, model } = require('mongoose');
+// const dateFormat = require('../utils/dateFormat');
 
-const Post = model('Post', postSchema);
+// const postSchema = new Schema({
+//   postText: {
+//     type: String,
+//     required: 'You need to leave a post!',
+//     minlength: 1,
+//     maxlength: 280,
+//     trim: true,
+//   },
+//   postAuthor: {
+//     type: String,
+//     required: true,
+//     trim: true,
+//   },
+//   createdAt: {
+//     type: Date,
+//     default: Date.now,
+//     get: (timestamp) => dateFormat(timestamp),
+//   },
+//   comments: [
+//     {
+//       commentText: {
+//         type: String,
+//         required: true,
+//         minlength: 1,
+//         maxlength: 280,
+//       },
+//       commentAuthor: {
+//         type: String,
+//         required: true,
+//       },
+//       createdAt: {
+//         type: Date,
+//         default: Date.now,
+//         get: (timestamp) => dateFormat(timestamp),
+//       },
+//     },
+//   ],
+// });
 
-module.exports = Post;
+// const Post = model('Post', postSchema);
+
+// module.exports = Post;
