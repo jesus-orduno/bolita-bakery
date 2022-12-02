@@ -1,13 +1,15 @@
 import React from 'react';
-
-import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
-
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  createHttpLink,
+} from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
 import Home from './pages/Home';
-import Detail from '.pages/Detail';
+import Detail from './pages/Detail';
 import NoMatch from './pages/NoMatch';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
@@ -67,7 +69,7 @@ function App() {
                 path="/products/:id" 
                 element={<Detail />} 
               />
-              <Route 
+              <Route
                 path="*" 
                 element={<NoMatch />} 
               />
@@ -80,35 +82,3 @@ function App() {
 }
 
 export default App;
-
-// import SingleThought from './pages/SingleThought';
-// import Header from './components/Header';
-// import Footer from './components/Footer';
-
-// function App() {
-//   return (
-//     <ApolloProvider client={client}>
-//       <Router>
-//         <div className="flex-column justify-flex-start min-100-vh">
-//           <Header />
-//           <div className="container">
-//             <Routes>
-//               <Route 
-//                 path="/" 
-//                 element={<Home />} 
-//               />
-//               {/* Create a route to display a single thought's comments based on its `thoughtId` provided in the URL */}
-//               <Route 
-//                 path="/thoughts/:thoughtId" 
-//                 element={<SingleThought />} 
-//               />
-//             </Routes>
-//           </div>
-//           <Footer />
-//         </div>
-//       </Router>
-//     </ApolloProvider>
-//   );
-// }
-
-// export default App;
