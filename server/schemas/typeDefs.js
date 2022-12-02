@@ -1,52 +1,58 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
+    type Product {
+    _id: ID
+    name: String
+    description: String
+    image: String
+    quantity: Int
+    price: Float
+  }
+
+  type Order {
+    _id: ID
+    purchaseDate: String
+    products: [Product]
+  }
+
   type User {
     _id: ID
-    username: String
+    firstName: String
+    lastName: String
     email: String
-    password: String
-    posts: [Post]!
-  }
-
-  type Post {
-    _id: ID
-    postText: String
-    postAuthor: String
-    createdAt: String
-    comments: [Comment]!
-  }
-
-  type Comment {
-    _id: ID
-    commentText: String
-    commentAuthor: String
-    createdAt: String
+    orders: [Order]
   }
 
   type Auth {
-    token: ID!
+    token: ID
     user: User
   }
 
   type Query {
-    users: [User]
-    user(username: String!): User
-    posts(username: String): [Post]
-    post(postId: ID!): Post
+    products: [Product]
+    product(_id: ID!): Product
+    user: User
+    order(_id: ID!): Order
+    checkout(products: [ID]!): Checkout
   }
 
   type Mutation {
-    addUser(username: String!, email: String!, password: String!): Auth
+    addUser(
+      firstName: String!
+      lastName: String!
+      email: String!
+      password: String!
+    ): Auth
+    addOrder(products: [ID]!): Order
+    updateUser(
+      firstName: String
+      lastName: String
+      email: String
+      password: String
+    ): User
+    updateProduct(_id: ID!, quantity: Int!): Product
     login(email: String!, password: String!): Auth
-    addPost(postText: String!, postAuthor: String!): Post
-    addComment(
-      postId: ID!
-      commentText: String!
-      commentAuthor: String!
-    ): Post
-    removePost(postId: ID!): Post
-    removeComment(postId: ID!, commentId: ID!): Post
   }
 `;
 
